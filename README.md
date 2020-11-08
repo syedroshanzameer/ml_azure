@@ -7,16 +7,16 @@ This model is then compared to an Azure AutoML run.
 
 ## Summary
 **In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
-This is a binary classification problem. Based on multiple features like age,marital status,housing loan, duration and multiple other feature we are trying to predict the column bank term deposit Yes or No. 
+This is a binary classification problem. 
+Based on multiple features like age,marital status,housing loan, duration and multiple other feature we are trying to predict the column bank term deposit Yes or No. 
 
 
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
 I have tried to work on the solution using 2 approaches, 
 1. Model training using HyperDrive where in I'm trying to find the best Hyperparameters for the model Logistic Regression.
-   The best model had the accuracy of 0.9155 in this case.
+   The best model Logistic Regression had the accuracy of 0.9155 in this case.
 2. AutoML which is an convinient way which can find the best model based on multiple algorithms and also its best parameters. 
-   The best performing model was 
-
+   The best performing model was VotingEnsemble with an accuracy of 0.91778
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
@@ -44,13 +44,15 @@ It saves compute power and also execution time of the compute engine.
 AutoML runs multiple algoriths and tunes hyperparameters and picks the best algorithms & model based on the metrics. 
 1. Hyperparameters we defined in AutoMlConfig are experiment timeout = 30 mins, type of problem which is classification, number of cross validations i.e 5 
 2. Model ran by AutoML were MaxAbsScaler RandomFOrest, LightGBM, ExtremeRandomTrees,XGBoostclassifier and others. 
+AutoML also gives us the feature importances just like RandomForest. 
 
 ## Pipeline comparison
 **Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
+ExtremeRandomTrees gave an accuracy of 0.77 in a run and the best that it gave was 0.915.
+LightGBM gave an accuracy of 0.915 in a run and the best that it gave was the same 0.915. 
+These metrics of these runs are best on the Hyperparameters that the model was choosing, So these differe but AutoML pics the best model at the end. 
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
+Some of the improvements might be like based on these runs if we find least important features we can eliminate then directly and rerun the model. SO that it will save execution time from next run.
 
-## Proof of cluster clean up
-**If you did not delete your compute cluster in the code, please complete this section. Otherwise, delete this section.**
-**Image of cluster marked for deletion**
